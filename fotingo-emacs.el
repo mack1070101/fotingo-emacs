@@ -100,3 +100,49 @@
 (defun fotingo-get-transient-flags(prefix)
   "fetches the transient flags from prefix, and returns them as a space separated string"
   (string-join (transient-args 'prefix) " "))
+
+;; Flags:
+(define-infix-argument fotingo-branch:-b ()
+  :description "Choose a branch"
+  :class 'transient-option
+  :key "-b"
+  :argument "--branch ")
+
+(define-infix-argument fotingo-create:-c ()
+  :description "Create a JIRA Issue"
+  :class 'transient-option
+  :key "-c"
+  :argument "--create ")
+
+(define-infix-argument fotingo-type:-t ()
+  :description "Choose issue type"
+  :class 'transient-option
+  :key "-t"
+  :argument "--type ")
+
+(define-infix-argument fotingo-label:-l ()
+  :description "Apply a JIRA label"
+  :class 'transient-option
+  :key "-l"
+  :argument "--label ")
+
+(define-infix-argument fotingo-description:-d ()
+  ;; TODO make launch editor buffer
+  :description "Description for a JIRA ticket"
+  :class 'transient-option
+  :key "-d"
+  :argument "--description ")
+
+(define-infix-argument fotingo-reviewer:-r ()
+  ;; TODO confirm what this is
+  :description "Github user"
+  :class 'transient-option
+  :key "-r"
+  :argument "-r ")
+
+(define-suffix-command fotingo-simple:-s ()
+  :description "Create pull request without connecting to JIRA"
+  :class 'transient-option
+  :key "-s"
+  :argument "--simple ")
+;;; fotingo-emacs.el ends here
