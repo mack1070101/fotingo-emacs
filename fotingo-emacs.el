@@ -24,3 +24,45 @@
 ;; TODO
 
 ;; Code:
+;;; Code:
+(require 'transient)
+
+;; Menus
+;;;###autoload (autoload 'fotingo-dispatch "fotingo-emacs.el" nil t)
+(define-transient-command fotingo-dispatch()
+  "Invoke a fotingo command from a list of available commands"
+  ["Commands"
+   ("s" "Start" fotingo-start-dispatch)
+   ("r" "Review" fotingo-review-dispatch)
+   ("R" "Release" fotingo-release-dispatch)])
+
+;;;###autoload (autoload 'fotingo-start-dispatch "fotingo-emacs.el" nil t)
+(define-transient-command fotingo-start-dispatch()
+  "Invoke a fotingo start command with various flags"
+  ["Flags"
+   (fotingo-branch:-b)
+   (fotingo-create:-c)
+   (fotingo-type:-t)
+   (fotingo-label:-l)
+   (fotingo-description:-d)]
+  ["Commands"
+   ("s" "Start" fotingo-start)])
+
+;;;###autoload (autoload 'fotingo-review-dispatch "fotingo-emacs.el" nil t)
+(define-transient-command fotingo-review-dispatch()
+  "Invoke a fotingo review command with various flags"
+  ;; TODO make use emacs, and label selection
+  ["Flags"
+   (fotingo-label:-l)
+   (fotingo-simple:-s)
+   (fotingo-reviewer:-r)]
+  ["Commands"
+   ("r" "Review" fotingo-review)])
+
+;;;###autoload (autoload 'fotingo-release-dispatch "fotingo-emacs.el" nil t)
+(define-transient-command fotingo-release-dispatch()
+  "Invoke a fotingo release command with various flags"
+  ["Flags"
+   (fotingo-simple:-s)]
+  ["Commands"
+   ("R" "Review" fotingo-release)])
