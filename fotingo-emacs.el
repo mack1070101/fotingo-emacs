@@ -4,6 +4,7 @@
 
 ;; Keywords: git tools vc jira
 ;; Homepage: TODO
+;; Version: 0.0.1
 
 ;; fotingo-emacs requires at least GNU Emacs 25.1 and fotingo TODO
 
@@ -23,7 +24,6 @@
 ;;; Commentary:
 ;; TODO
 
-;; Code:
 ;;; Code:
 (require 'transient)
 
