@@ -66,3 +66,37 @@
    (fotingo-simple:-s)]
   ["Commands"
    ("R" "Review" fotingo-release)])
+
+;; Functions:
+;;;###autoload
+(defun fotingo-start()
+  "Runs the fotingo start command with flags pulled from transient"
+  (interactive)
+  (message
+   (concat "env DEBUG=any_random_string fotingo start "
+           (read-from-minibuffer (concat (propertize "Issue name: " 'face '(bold default))))
+           " "
+           (string-join (transient-args 'fotingo-start-dispatch) " ")))
+  "*fotingo*")
+
+;;;###autoload
+(defun fotingo-review()
+  "Runs the fotingo review command with flags pulled from transient"
+  (interactive)
+  (message
+   (concat "env DEBUG=any_random_string fotingo review "
+           (fotingo-get-transient-flags 'fotingo-review-dispatch)))
+  "*fotingo*")
+
+;;;###autoload
+(defun fotingo-release()
+  "Runs the fotingo relese command with flags pulled from transient"
+  (interactive)
+  (message
+   (concat "env DEBUG=any_random_string fotingo release "
+           (string-join (transient-args 'fotingo-release-dispatch) " ")))
+  "*fotingo*")
+
+(defun fotingo-get-transient-flags(prefix)
+  "fetches the transient flags from prefix, and returns them as a space separated string"
+  (string-join (transient-args 'prefix) " "))
