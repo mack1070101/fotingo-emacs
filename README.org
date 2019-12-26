@@ -1,0 +1,3 @@
+#+TITLE: Fotingo Emacs
+#+STARTUP: overview
+* ~fotingo-emacs~
