@@ -3,10 +3,10 @@
 ;; Author: Mackenzie Bligh <mackenziebligh@gmail.com>
 
 ;; Keywords: git tools vc jira
-;; Homepage: TODO
+;; Homepage: https://github.com/mack1070101/fotingo-emacs
 ;; Version: 0.0.1
 
-;; fotingo-emacs requires at least GNU Emacs 25.1 and fotingo TODO
+;; fotingo-emacs requires at least GNU Emacs 25.1 and fotingo 1.9.2
 
 ;; fotingo-emacs is free software; you can redistribute it and/or modify it
 ;; under the terms of the gnu general public license as published by
@@ -15,11 +15,11 @@
 ;;
 ;; fotingo-emacs is distributed in the hope that it will be useful, but without
 ;; any warranty; without even the implied warranty of merchantability
-;; or fitness for a particular purpose.  see the gnu general public
+;; or fitness for a particular purpose. See the gnu general public
 ;; license for more details.
 ;;
-;; you should have received a copy of the gnu general public license
-;; along with magit.  if not, see http://www.gnu.org/licenses.
+;; You should have received a copy of the gnu general public license
+;; along with fotingo-emacs.  if not, see http://www.gnu.org/licenses.
 
 ;;; Commentary:
 ;; TODO
