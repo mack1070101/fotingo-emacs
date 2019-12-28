@@ -27,6 +27,8 @@
 ;;; Code:
 (require 'transient)
 
+(setq fotingo-command "env DEBUG=any_random_string fotingo ")
+
 ;; Menus
 ;;;###autoload (autoload 'fotingo-dispatch "fotingo-emacs.el" nil t)
 (define-transient-command fotingo-dispatch()
@@ -73,7 +75,8 @@
   "Runs the fotingo start command with flags pulled from transient"
   (interactive)
   (message
-   (concat "env DEBUG=any_random_string fotingo start "
+   (concat fotingo-command
+           "start "
            (read-from-minibuffer (concat (propertize "Issue name: " 'face '(bold default))))
            " "
            (string-join (transient-args 'fotingo-start-dispatch) " ")))
@@ -84,8 +87,9 @@
   "Runs the fotingo review command with flags pulled from transient"
   (interactive)
   (message
-   (concat "env DEBUG=any_random_string fotingo review "
-           (fotingo-get-transient-flags 'fotingo-review-dispatch)))
+   (concat fotingo-command
+           "review "
+           (string-join (transient-args 'fotingo-review-dispatch) " ")))
   "*fotingo*")
 
 ;;;###autoload
@@ -93,13 +97,10 @@
   "Runs the fotingo relese command with flags pulled from transient"
   (interactive)
   (message
-   (concat "env DEBUG=any_random_string fotingo release "
+   (concat fotingo-command
+           "release "
            (string-join (transient-args 'fotingo-release-dispatch) " ")))
   "*fotingo*")
-
-(defun fotingo-get-transient-flags(prefix)
-  "fetches the transient flags from prefix, and returns them as a space separated string"
-  (string-join (transient-args 'prefix) " "))
 
 ;; Flags:
 (define-infix-argument fotingo-branch:-b ()
