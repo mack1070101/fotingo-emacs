@@ -53,7 +53,6 @@
 ;;;###autoload (autoload 'fotingo-review-dispatch "fotingo-emacs.el" nil t)
 (define-transient-command fotingo-review-dispatch()
   "Invoke a fotingo review command with various flags"
-  ;; TODO make use emacs, and label selection
   ["Flags"
    (fotingo-label:-l)
    (fotingo-simple:-s)
@@ -65,9 +64,10 @@
 (define-transient-command fotingo-release-dispatch()
   "Invoke a fotingo release command with various flags"
   ["Flags"
+   (fotingo-issue:-i)
    (fotingo-simple:-s)]
   ["Commands"
-   ("R" "Review" fotingo-release)])
+   ("R" "Release" fotingo-release)])
 
 ;; Functions:
 ;;;###autoload
@@ -145,4 +145,11 @@
   :description "Create without corresponding JIRA issue"
   :key "-s"
   :argument "--simple")
+
+(define-infix-argument fotingo-issue:-i ()
+  ;; TODO confirm what this is
+  :description "Issue name"
+  :class 'transient-option
+  :key "-i"
+  :argument "-i ")
 ;;; fotingo-emacs.el ends here
