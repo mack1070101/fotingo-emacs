@@ -1,4 +1,34 @@
 #+TITLE: Fotingo Emacs
 #+STARTUP: overview
 [[http://spacemacs.org][file:https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg]]
-* ~fotingo-emacs~
+~fotingo-emacs~ is an Emacs interface to the cli tool [[https://github.com/tagoro9/fotingo][fotingo]]. Fotingo is a
+CLI to ease the interaction between Git, Github and Jira when working on tasks.
+~fotingo-emacs~ aims to provide the same level of convenience that
+* Installation
+** Pre-Requisites:
+- Git
+- [[https://github.com/tagoro9/fotingo][fotingo]] must be installed into the shell that Emacs will run ~shell-command~.
+See fotingo's README.md for instructions on how to install fotingo. Fotingo
+provides additional options for configuration.
+
+It is also recommended to install [[https://magit.vc/][Magit]] so that ~fotingo-emacs~ can be
+integrated into it's ~transient~ menus.
+** Local Install of ~fotingo-emacs~
+Step 1: clone the repo
+#+BEGIN_SRC shell
+  git clone https://github.com/mack1070101/fotingo-emacs.git
+#+END_SRC
+
+Step 2: add the following to your ~init.el~
+#+BEGIN_SRC elisp
+  (add-to-list 'load-path "/path/to/fotingo-emacs/fotingo-emacs.el")
+#+END_SRC
+
+Step 3: (optional) integrate into [[https://magit.vc/][Magit]].
+#+BEGIN_SRC elisp
+  (transient-append-suffix 'magit-dispatch "F" '("o" "Fotingo" fotingo-dispatch))
+#+END_SRC
+
+** MELPA
+Coming soon
+* Usage
