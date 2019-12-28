@@ -141,9 +141,8 @@
   :key "-r"
   :argument "-r ")
 
-(define-suffix-command fotingo-simple:-s ()
-  :description "Create pull request without connecting to JIRA"
-  :class 'transient-option
+(define-infix-argument fotingo-simple:-s()
+  :description "Create without corresponding JIRA issue"
   :key "-s"
-  :argument "--simple ")
+  :argument "--simple")
 ;;; fotingo-emacs.el ends here
