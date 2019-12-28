@@ -130,14 +130,12 @@
   :argument "--label ")
 
 (define-infix-argument fotingo-description:-d ()
-  ;; TODO make launch editor buffer
   :description "Description for a JIRA ticket"
   :class 'transient-option
   :key "-d"
   :argument "--description ")
 
 (define-infix-argument fotingo-reviewer:-r ()
-  ;; TODO confirm what this is
   :description "Github user"
   :class 'transient-option
   :key "-r"
@@ -149,14 +147,12 @@
   :argument "--simple")
 
 (define-infix-argument fotingo-issue:-i ()
-  ;; TODO confirm what this is
   :description "Issue name"
   :class 'transient-option
   :key "-i"
   :argument "-i ")
 
 (define-infix-argument fotingo-yes:-y ()
-  ;; TODO confirm what this is
   :description "Use fotingo defaults; skip launching editor"
   :key "-y"
   :argument "--yes")
