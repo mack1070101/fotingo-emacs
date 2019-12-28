@@ -4,7 +4,8 @@
 
 ~fotingo-emacs~ is an Emacs interface to the cli tool [[https://github.com/tagoro9/fotingo][fotingo]]. Fotingo is a
 CLI to ease the interaction between Git, Github and Jira when working on tasks.
-~fotingo-emacs~ aims to provide the same level of convenience that
+~fotingo-emacs~ aims to provide the same level of convenience provided by [[https://magit.vc/][Magit]]
+and is designed to follow a similar workflow.
 * Installation
 ** Pre-Requisites:
 - Git
