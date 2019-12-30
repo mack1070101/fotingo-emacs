@@ -61,7 +61,7 @@
   ["Flags"
    (fotingo-label:-l)
    (fotingo-simple:-s)
-   (fotiingo-yes:-y)
+   (fotingo-yes:-y)
    (fotingo-reviewer:-r)]
   ["Commands"
    ("r" "Review" fotingo-review)])
@@ -71,7 +71,7 @@
   "Invoke a fotingo release command with various flags"
   ["Flags"
    (fotingo-issue:-i)
-   (fotiingo-yes:-y)
+   (fotingo-yes:-y)
    (fotingo-simple:-s)]
   ["Commands"
    ("R" "Release" fotingo-release)])
