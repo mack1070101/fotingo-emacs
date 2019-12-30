@@ -81,7 +81,7 @@
 (defun fotingo-start()
   "Runs the fotingo start command with flags pulled from transient"
   (interactive)
-  (message
+  (async-shell-command
    (concat fotingo-command
            "start "
            (read-from-minibuffer (concat (propertize "Issue name: " 'face '(bold default))))
@@ -93,7 +93,7 @@
 (defun fotingo-review()
   "Runs the fotingo review command with flags pulled from transient"
   (interactive)
-  (message
+  (async-shell-command
    (concat fotingo-command
            "review "
            (string-join (transient-args 'fotingo-review-dispatch) " ")))
@@ -103,7 +103,7 @@
 (defun fotingo-release()
   "Runs the fotingo relese command with flags pulled from transient"
   (interactive)
-  (message
+  (async-shell-command
    (concat fotingo-command
            "release "
            (string-join (transient-args 'fotingo-release-dispatch) " ")))
