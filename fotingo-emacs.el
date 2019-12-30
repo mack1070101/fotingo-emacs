@@ -22,7 +22,12 @@
 ;; along with fotingo-emacs.  if not, see http://www.gnu.org/licenses.
 
 ;;; Commentary:
-;; TODO
+;; fotingo-emacs is an Emacs interface to the cli tool fotingo. Fotingo is a
+;; CLI to ease the interaction between Git, Github and Jira when working on tasks.
+;; fotingo-emacs aims to provide the same level of convenience provided by Magit
+;; and is designed to follow a similar work flow. It is designed to fit into Magit's
+;; transient menus to help supplement existing version control work flows.
+
 
 ;;; Code:
 (require 'transient)
