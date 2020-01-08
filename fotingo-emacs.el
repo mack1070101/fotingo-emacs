@@ -28,7 +28,6 @@
 ;; and is designed to follow a similar work flow. It is designed to fit into Magit's
 ;; transient menus to help supplement existing version control work flows.
 
-
 ;;; Code:
 (require 'transient)
 
@@ -141,7 +140,7 @@
   :argument "--description ")
 
 (define-infix-argument fotingo-reviewer:-r ()
-  :description "Github user"
+  :description "Request review from a Github user"
   :class 'transient-option
   :key "-r"
   :argument "-r ")
