@@ -31,7 +31,7 @@
 ;;; Code:
 (require 'transient)
 
-(setq fotingo-command "env DEBUG=any_random_string fotingo ")
+(setq fotingo-command "env DEBUG=any_random_string fotingo")
 
 ;; Menus
 ;;;###autoload (autoload 'fotingo-dispatch "fotingo-emacs.el" nil t)
@@ -80,33 +80,39 @@
 (defun fotingo-start()
   "Runs the fotingo start command with flags pulled from transient"
   (interactive)
-  (async-shell-command
+  (shell-command
    (concat fotingo-command
            "start "
            (read-from-minibuffer (concat (propertize "Issue name: " 'face '(bold default))))
            " "
-           (string-join (transient-args 'fotingo-start-dispatch) " ")))
-  "*fotingo*")
+           (fotingo-transient-args-to-string 'fotingo-start-dispatch))))
 
 ;;;###autoload
 (defun fotingo-review()
   "Runs the fotingo review command with flags pulled from transient"
   (interactive)
-  (async-shell-command
-   (concat fotingo-command
-           "review "
-           (string-join (transient-args 'fotingo-review-dispatch) " ")))
-  "*fotingo*")
+  (fotingo-cli-command "review" 'fotingo-review-dispatch))
 
 ;;;###autoload
 (defun fotingo-release()
   "Runs the fotingo relese command with flags pulled from transient"
   (interactive)
-  (async-shell-command
-   (concat fotingo-command
-           "release "
-           (string-join (transient-args 'fotingo-release-dispatch) " ")))
-  "*fotingo*")
+  (fotingo-cli-command "release" 'fotingo-release-dispatch))
+
+;;;###autoload
+(defun fotingo-cli-command (command-name dispatch-func)
+  "Executes a shell-command for fotingo"
+  (interactive)
+  (shell-command
+   (string-join (list fotingo-command
+                      command-name
+                      (fotingo-transient-args-to-string dispatch-func))
+                " ")
+   "*fotingo*"))
+
+(defun fotingo-transient-args-to-string(fotingo-func)
+  "Converts transient args to strings"
+  (string-join (transient-args fotingo-func) " "))
 
 ;; Flags:
 (define-infix-argument fotingo-branch:-b ()
