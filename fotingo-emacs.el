@@ -80,12 +80,14 @@
 (defun fotingo-start()
   "Runs the fotingo start command with flags pulled from transient"
   (interactive)
-  (shell-command
-   (concat fotingo-command
-           "start "
-           (read-from-minibuffer (concat (propertize "Issue name: " 'face '(bold default))))
-           " "
-           (fotingo-transient-args-to-string 'fotingo-start-dispatch))))
+  (fotingo-cli-command (string-join
+                        "start"
+                        (read-from-minibuffer (concat (propertize
+                                                       "Issue name: "
+                                                       'face
+                                                       '(bold default)))
+                                    " "))
+                       'fotingo-start-dispatch))
 
 ;;;###autoload
 (defun fotingo-review()
