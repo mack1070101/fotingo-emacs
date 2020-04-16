@@ -80,14 +80,14 @@
 (defun fotingo-start()
   "Runs the fotingo start command with flags pulled from transient"
   (interactive)
-  (fotingo-cli-command (string-join
-                        "start"
-                        (read-from-minibuffer (concat (propertize
-                                                       "Issue name: "
-                                                       'face
-                                                       '(bold default)))
-                                    " "))
-                       'fotingo-start-dispatch))
+  (fotingo-cli-command
+   (string-join (list "start"
+                      (read-from-minibuffer (concat (propertize
+                                                            "Issue name: "
+                                                            'face
+                                                            '(bold default)))))
+                " ")
+   'fotingo-start-dispatch))
 
 ;;;###autoload
 (defun fotingo-review()
@@ -110,7 +110,8 @@
                       command-name
                       (fotingo-transient-args-to-string dispatch-func))
                 " ")
-   "*fotingo*"))
+   "*fotingo*")
+  (goto-address-mode))
 
 (defun fotingo-transient-args-to-string(fotingo-func)
   "Converts transient args to strings"
