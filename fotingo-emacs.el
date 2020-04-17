@@ -83,9 +83,9 @@
   (fotingo-cli-command
    (string-join (list "start"
                       (read-from-minibuffer (concat (propertize
-                                                            "Issue name: "
-                                                            'face
-                                                            '(bold default)))))
+                                                     "Issue name: "
+                                                     'face
+                                                     '(bold default)))))
                 " ")
    'fotingo-start-dispatch))
 
@@ -105,13 +105,25 @@
 (defun fotingo-cli-command (command-name dispatch-func)
   "Executes a shell-command for fotingo"
   (interactive)
-  (shell-command
-   (string-join (list fotingo-command
-                      command-name
-                      (fotingo-transient-args-to-string dispatch-func))
-                " ")
-   "*fotingo*")
-  (goto-address-mode))
+  (print "calling cli-command")
+  ;; TODO do use a process, not a string
+  (let* ((un-filtered-result (shell-command-to-string
+                              (string-join (list fotingo-command
+                                                 command-name
+                                                 (fotingo-transient-args-to-string dispatch-func))
+                                           " ")))
+         (result (string-join
+                  (remove-duplicates
+                   (split-string un-filtered-result "\n")
+                   :test (lambda (x y) (or (null y) (equal x y)))
+                   :from-end t)
+                  "\n"))
+         (output-buffer (get-buffer-create "*fotingo*")))
+    (with-current-buffer output-buffer
+      (insert result)
+      (goto-address-mode)
+      (split-window-below-and-focus)
+      (switch-to-buffer output-buffer))))
 
 (defun fotingo-transient-args-to-string(fotingo-func)
   "Converts transient args to strings"
