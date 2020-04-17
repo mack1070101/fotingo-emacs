@@ -105,21 +105,19 @@
 (defun fotingo-cli-command (command-name dispatch-func)
   "Executes a shell-command for fotingo"
   (interactive)
-  (message "Process based fotingoo")
-  (let* ((output-buffer (get-buffer-create "*fotingo*"))
-         (un-filtered-result
-          (call-process-shell-command
-           (string-join (list fotingo-command
-                              command-name
-                              (fotingo-transient-args-to-string dispatch-func))
-                        " ")
-           nil
-           output-buffer
-           t)))
-    ;; TODO this seems somewhat crude
+  (let* ((output-buffer (get-buffer-create "*fotingo*")))
+    (with-current-buffer output-buffer (goto-address-mode))
     (split-window-below-and-focus)
     (switch-to-buffer output-buffer)
-    (goto-address-mode)))
+    (other-window -1)
+    (call-process-shell-command
+     (string-join (list fotingo-command
+                        command-name
+                        (fotingo-transient-args-to-string dispatch-func))
+                  " ")
+     nil
+     output-buffer
+     t)))
 
 (defun fotingo-transient-args-to-string(fotingo-func)
   "Converts transient args to strings"
