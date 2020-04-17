@@ -29,7 +29,7 @@
 ;; transient menus to help supplement existing version control work flows.
 
 ;;; Code:
-(require 'transient)
+(require 'transient 'goto-address-mode)
 
 (setq fotingo-command "env DEBUG=any_random_string fotingo")
 
@@ -105,25 +105,21 @@
 (defun fotingo-cli-command (command-name dispatch-func)
   "Executes a shell-command for fotingo"
   (interactive)
-  (print "calling cli-command")
-  ;; TODO do use a process, not a string
-  (let* ((un-filtered-result (shell-command-to-string
-                              (string-join (list fotingo-command
-                                                 command-name
-                                                 (fotingo-transient-args-to-string dispatch-func))
-                                           " ")))
-         (result (string-join
-                  (remove-duplicates
-                   (split-string un-filtered-result "\n")
-                   :test (lambda (x y) (or (null y) (equal x y)))
-                   :from-end t)
-                  "\n"))
-         (output-buffer (get-buffer-create "*fotingo*")))
-    (with-current-buffer output-buffer
-      (insert result)
-      (goto-address-mode)
-      (split-window-below-and-focus)
-      (switch-to-buffer output-buffer))))
+  (message "Process based fotingoo")
+  (let* ((output-buffer (get-buffer-create "*fotingo*"))
+         (un-filtered-result
+          (call-process-shell-command
+           (string-join (list fotingo-command
+                              command-name
+                              (fotingo-transient-args-to-string dispatch-func))
+                        " ")
+           nil
+           output-buffer
+           t)))
+    ;; TODO this seems somewhat crude
+    (split-window-below-and-focus)
+    (switch-to-buffer output-buffer)
+    (goto-address-mode)))
 
 (defun fotingo-transient-args-to-string(fotingo-func)
   "Converts transient args to strings"
