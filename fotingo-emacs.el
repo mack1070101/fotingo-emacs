@@ -110,6 +110,7 @@
     (split-window-below-and-focus)
     (switch-to-buffer output-buffer)
     (other-window -1)
+    (goto-address-mode (point-marker))
     (call-process-shell-command
      (string-join (list fotingo-command
                         command-name
